@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrore 扩展商店</title>
+  <meta name="description" content="Astrore Tauri 应用扩展商店，浏览插件、工具、AI 能力和第三方扩展。" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../assets/astrore-icon.png" />
+</head>
+<body class="market-body">
+  <nav class="navbar">
+    <div class="nav-inner market-nav">
+      <a href="../" class="logo">
+        <img src="../assets/astrore-icon.png" alt="Astrore" width="32" height="32" />
+        <span>Astrore Store</span>
+      </a>
+      <div class="nav-links">
+        <a href="../">官网首页</a>
+        <a href="../developer/extensions.html">开发文档</a>
+        <a href="https://github.com/zkonikishi/Astrore/tree/main/registry" class="btn-ghost" target="_blank" rel="noopener">提交扩展</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="market-shell">
+    <section class="market-hero">
+      <div>
+        <p class="developer-eyebrow">Tauri Extension Store</p>
+        <h1>Astrore 扩展商店</h1>
+        <p>为 Astrore 桌面应用准备的扩展市场。这里展示可安装扩展，真正的安装、更新、启停和权限确认会在 Tauri 应用内完成。</p>
+      </div>
+      <div class="market-stats" aria-label="商店统计">
+        <div><strong id="stat-count">0</strong><span>扩展</span></div>
+        <div><strong>4</strong><span>分类</span></div>
+        <div><strong>SHA-256</strong><span>完整性校验</span></div>
+      </div>
+    </section>
+
+    <section class="market-toolbar" aria-label="扩展筛选">
+      <label class="market-search">
+        <span>搜索</span>
+        <input id="store-search" type="search" placeholder="搜索扩展名称、作者、标签" autocomplete="off" />
+      </label>
+      <label>
+        <span>分类</span>
+        <select id="store-category">
+          <option value="all">全部分类</option>
+          <option value="ops">运维工具</option>
+          <option value="ai">AI 能力</option>
+          <option value="security">安全</option>
+          <option value="integration">集成</option>
+        </select>
+      </label>
+      <label>
+        <span>排序</span>
+        <select id="store-sort">
+          <option value="recommended">推荐优先</option>
+          <option value="downloads">下载量</option>
+          <option value="updated">最近更新</option>
+          <option value="name">名称</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="market-layout">
+      <aside class="market-sidebar">
+        <h2>安装方式</h2>
+        <ol>
+          <li>打开 Astrore 桌面应用</li>
+          <li>进入「扩展商店」</li>
+          <li>查看权限与风险提示</li>
+          <li>确认后安装并启用</li>
+        </ol>
+        <div class="market-note">
+          <strong>安全策略</strong>
+          <p>官方注册表只保存扩展元数据。应用安装前会校验来源、大小、SHA-256、manifest 和权限声明。</p>
+        </div>
+        <a class="btn-secondary market-full" href="../developer/extensions.html">开发扩展</a>
+      </aside>
+
+      <section class="market-results">
+        <div class="market-results-head">
+          <h2>扩展列表</h2>
+          <span id="store-result-count">0 个结果</span>
+        </div>
+        <div id="store-grid" class="plugin-grid"></div>
+        <div id="store-empty" class="market-empty" hidden>
+          <strong>没有找到匹配扩展</strong>
+          <p>换一个关键词，或者清空筛选条件。</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const extensions = [
+      {
+        name: "LuckPerms Bridge",
+        author: "Astrore Team",
+        category: "ops",
+        categoryName: "运维工具",
+        version: "0.3.0",
+        updated: "2026-06-12",
+        downloads: 1280,
+        risk: "low",
+        summary: "在 Astrore 中查看权限组、同步常用权限节点，并快速打开 LuckPerms Web Editor。",
+        tags: ["权限", "玩家管理", "Bukkit"],
+        repo: "https://github.com/zkonikishi/Astrore/tree/main/extensions"
+      },
+      {
+        name: "Crash Log Doctor",
+        author: "Community",
+        category: "ai",
+        categoryName: "AI 能力",
+        version: "0.2.4",
+        updated: "2026-06-08",
+        downloads: 960,
+        risk: "medium",
+        summary: "读取最近崩溃日志，调用应用内 AI 配置生成原因分析、修复建议和可复制命令。",
+        tags: ["AI", "日志分析", "崩溃诊断"],
+        repo: "https://github.com/zkonikishi/Astrore/tree/main/registry"
+      },
+      {
+        name: "Backup Scheduler",
+        author: "Astrore Team",
+        category: "ops",
+        categoryName: "运维工具",
+        version: "0.5.1",
+        updated: "2026-06-15",
+        downloads: 1840,
+        risk: "low",
+        summary: "按时间、玩家在线状态或服务端关闭事件触发备份，支持保留策略和恢复点说明。",
+        tags: ["备份", "计划任务", "恢复"],
+        repo: "https://github.com/zkonikishi/Astrore/tree/main/extensions"
+      },
+      {
+        name: "Webhook Notifier",
+        author: "Community",
+        category: "integration",
+        categoryName: "集成",
+        version: "0.1.8",
+        updated: "2026-06-02",
+        downloads: 620,
+        risk: "medium",
+        summary: "把开服、关服、崩溃、玩家加入等事件推送到 Discord、QQ Bot 或自定义 Webhook。",
+        tags: ["Webhook", "通知", "自动化"],
+        repo: "https://github.com/zkonikishi/Astrore/tree/main/registry"
+      },
+      {
+        name: "Manifest Guard",
+        author: "Astrore Team",
+        category: "security",
+        categoryName: "安全",
+        version: "0.4.2",
+        updated: "2026-06-10",
+        downloads: 740,
+        risk: "low",
+        summary: "检查第三方扩展 manifest、权限声明和安装包哈希，生成可读的安全报告。",
+        tags: ["安全", "manifest", "校验"],
+        repo: "https://github.com/zkonikishi/Astrore/tree/main/registry"
+      },
+      {
+        name: "Modpack Importer",
+        author: "Community",
+        category: "integration",
+        categoryName: "集成",
+        version: "0.2.0",
+        updated: "2026-05-28",
+        downloads: 530,
+        risk: "medium",
+        summary: "导入常见整合包结构，辅助识别服务端核心、mods 目录、配置文件和 Java 版本需求。",
+        tags: ["整合包", "Forge", "Fabric"],
+        repo: "https://github.com/zkonikishi/Astrore/tree/main/extensions"
+      }
+    ];
+
+    const categoryLabels = {
+      all: "全部分类",
+      ops: "运维工具",
+      ai: "AI 能力",
+      security: "安全",
+      integration: "集成"
+    };
+
+    const searchInput = document.querySelector("#store-search");
+    const categorySelect = document.querySelector("#store-category");
+    const sortSelect = document.querySelector("#store-sort");
+    const grid = document.querySelector("#store-grid");
+    const empty = document.querySelector("#store-empty");
+    const count = document.querySelector("#store-result-count");
+    const statCount = document.querySelector("#stat-count");
+
+    function riskLabel(risk) {
+      return risk === "low" ? "低风险" : risk === "medium" ? "需确认权限" : "高风险";
+    }
+
+    function render() {
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categorySelect.value;
+      const sort = sortSelect.value;
+      let items = extensions.filter(item => {
+        const haystack = [item.name, item.author, item.categoryName, item.summary, ...item.tags].join(" ").toLowerCase();
+        return (category === "all" || item.category === category) && (!query || haystack.includes(query));
+      });
+
+      items = items.sort((a, b) => {
+        if (sort === "downloads") return b.downloads - a.downloads;
+        if (sort === "updated") return b.updated.localeCompare(a.updated);
+        if (sort === "name") return a.name.localeCompare(b.name);
+        return (b.downloads / 1000 + b.updated.localeCompare(a.updated)) - (a.downloads / 1000);
+      });
+
+      grid.innerHTML = items.map(item => `
+        <article class="plugin-card">
+          <div class="plugin-card-head">
+            <div class="plugin-icon">${item.name.slice(0, 1)}</div>
+            <div>
+              <h3>${item.name}</h3>
+              <p>by ${item.author}</p>
+            </div>
+          </div>
+          <p class="plugin-summary">${item.summary}</p>
+          <div class="plugin-tags">
+            <span>${categoryLabels[item.category]}</span>
+            <span>v${item.version}</span>
+            <span class="risk-${item.risk}">${riskLabel(item.risk)}</span>
+          </div>
+          <div class="plugin-meta">
+            <span>${item.downloads.toLocaleString()} 下载</span>
+            <span>${item.updated}</span>
+          </div>
+          <div class="plugin-actions">
+            <a class="btn-primary" href="astrore://extensions/install?name=${encodeURIComponent(item.name)}">在 Astrore 中安装</a>
+            <a class="btn-secondary" href="${item.repo}" target="_blank" rel="noopener">源码/注册表</a>
+          </div>
+        </article>
+      `).join("");
+
+      count.textContent = `${items.length} 个结果`;
+      empty.hidden = items.length > 0;
+      statCount.textContent = extensions.length;
+    }
+
+    searchInput.addEventListener("input", render);
+    categorySelect.addEventListener("change", render);
+    sortSelect.addEventListener("change", render);
+    render();
+  </script>
+</body>
+</html>
