@@ -78,13 +78,13 @@
   </section>
 
   <section id="extensions" class="section section-alt">
-    <h2 class="section-title">扩展商店</h2>
-    <p class="section-desc">从官方注册表发现插件、管理更新，并通过权限声明和完整性校验降低第三方扩展风险。</p>
+    <h2 class="section-title">应用内扩展商店</h2>
+    <p class="section-desc">官网提供说明和开发入口，真正的扩展发现、安装、更新和启停都在 Astrore Tauri 应用内完成。</p>
     <div class="store-grid">
       <div class="store-panel store-feature">
-        <p class="store-eyebrow">Extension Store</p>
-        <h3>给服主的一站式扩展入口</h3>
-        <p>扩展商店会展示插件、工具和 AI 能力扩展，安装包需要通过 HTTPS、文件大小、SHA-256 和 manifest 校验后才能安装。</p>
+        <p class="store-eyebrow">Tauri Extension Store</p>
+        <h3>对接 Astrore 桌面应用的扩展商店</h3>
+        <p>Tauri 应用会读取官方注册表，展示插件、工具和 AI 能力扩展。安装包需要通过 HTTPS、文件大小、SHA-256 和 manifest 校验后才能进入应用。</p>
         <div class="hero-buttons article-actions">
           <a class="btn-primary" href="developer/extensions.html">查看扩展规范</a>
           <a class="btn-secondary" href="https://github.com/zkonikishi/Astrore/tree/main/registry" target="_blank" rel="noopener">官方注册表</a>
@@ -93,10 +93,10 @@
       <div class="store-panel">
         <h3>内置能力</h3>
         <ul class="store-list">
-          <li><strong>插件发现</strong><span>按分类、版本和兼容范围浏览扩展。</span></li>
-          <li><strong>安全安装</strong><span>安装前显示权限、来源、风险等级和校验结果。</span></li>
-          <li><strong>更新检查</strong><span>读取注册表版本，提醒可更新扩展并保留回滚备份。</span></li>
-          <li><strong>开发者提交</strong><span>通过 Pull Request 提交扩展条目，便于社区共同维护。</span></li>
+          <li><strong>应用内发现</strong><span>在 Astrore 桌面端按分类、版本和兼容范围浏览扩展。</span></li>
+          <li><strong>安全安装</strong><span>Tauri 应用安装前显示权限、来源、风险等级和校验结果。</span></li>
+          <li><strong>更新检查</strong><span>应用读取注册表版本，提醒可更新扩展并保留回滚备份。</span></li>
+          <li><strong>开发者提交</strong><span>官网文档说明提交规范，扩展条目通过 Pull Request 进入官方注册表。</span></li>
         </ul>
       </div>
     </div>
@@ -180,7 +180,7 @@ ASTRORE_TOKEN='your-secret-token' \
         <ol>
           <li>进入「配置文件」编辑 server.properties</li>
           <li>调整游戏模式、难度、端口等</li>
-          <li>在「扩展商店」中安装插件、模组和运维工具</li>
+          <li>在应用内「扩展商店」中安装插件、模组和运维工具</li>
           <li>在「权限管理」中设置 OP 和白名单</li>
         </ol>
       </div>
