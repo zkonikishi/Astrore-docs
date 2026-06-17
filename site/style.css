@@ -119,6 +119,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft Ya
 .plugin-tags .risk-medium { background: #eef6ff; color: #2563eb; }
 .plugin-tags .risk-low { background: #ecfdf5; color: #059669; }
 .plugin-meta { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 12px; }
+.plugin-author { padding-top: 10px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 13px; font-weight: 700; }
 .plugin-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .plugin-actions .btn-primary, .plugin-actions .btn-secondary { padding: 9px 13px; font-size: 13px; }
 .market-empty { padding: 32px; border: 1px dashed var(--border); border-radius: var(--radius); background: var(--surface); text-align: center; }
