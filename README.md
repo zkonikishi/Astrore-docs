@@ -1,4 +1,4 @@
-# Astrore Website
+# Astrore Docs
 
 Astrore's standalone product website and developer documentation.
 
