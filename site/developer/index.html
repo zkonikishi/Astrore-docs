@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrore 开发者文档</title>
+  <meta name="description" content="Astrore 扩展开发、发布与安全规范。" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../assets/astrore-icon.png" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../" class="logo">
+        <img src="../assets/astrore-icon.png" alt="Astrore" width="32" height="32" />
+        <span>Astrore 开发者</span>
+      </a>
+      <div class="nav-links">
+        <a href="../">官网首页</a>
+        <a href="https://github.com/zkonikishi/Astrore" class="btn-ghost" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="section developer-page">
+    <p class="developer-eyebrow">Developer Documentation</p>
+    <h1>为 Astrore 构建扩展</h1>
+    <p class="developer-lead">优先使用 WASI 沙箱扩展；需要系统能力时，可使用明确标记为高风险的外部 MCP 扩展。</p>
+
+    <div class="guide-grid developer-grid">
+      <article class="guide-card">
+        <h2>扩展开发与发布</h2>
+        <p>查看清单格式、权限命名、注册表结构、安全要求以及更新发布流程。</p>
+        <a class="btn-primary" href="extensions.html">阅读扩展文档</a>
+      </article>
+      <article class="guide-card">
+        <h2>示例扩展</h2>
+        <p>仓库内提供本地化翻译与 QQ 机器人 MCP 示例，可用于理解协议与目录结构。</p>
+        <a class="btn-secondary" href="https://github.com/zkonikishi/Astrore/tree/main/extensions" target="_blank" rel="noopener">查看示例源码</a>
+      </article>
+      <article class="guide-card">
+        <h2>提交到官方商店</h2>
+        <p>发布不可变安装包，填写 SHA-256 与版本信息，再通过 Pull Request 更新官方注册表。</p>
+        <a class="btn-secondary" href="https://github.com/zkonikishi/Astrore/tree/main/registry" target="_blank" rel="noopener">查看注册表</a>
+      </article>
+      <article class="guide-card">
+        <h2>安全模型</h2>
+        <p>安装包经过 HTTPS、大小、哈希、路径与清单校验；外部进程扩展启动前始终要求用户确认。</p>
+        <a class="btn-secondary" href="extensions.html#permissions">查看权限规范</a>
+      </article>
+    </div>
+  </main>
+</body>
+</html>

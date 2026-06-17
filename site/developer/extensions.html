@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrore 扩展开发与发布</title>
+  <meta name="description" content="Astrore 扩展清单、权限、安全与商店发布规范。" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../assets/astrore-icon.png" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="./" class="logo">
+        <img src="../assets/astrore-icon.png" alt="Astrore" width="32" height="32" />
+        <span>扩展开发</span>
+      </a>
+      <div class="nav-links"><a href="./">开发者首页</a><a href="../">官网首页</a></div>
+    </div>
+  </nav>
+
+  <main class="section developer-page docs-article">
+    <p class="developer-eyebrow">Extension Platform</p>
+    <h1>扩展开发与发布</h1>
+    <p class="developer-lead">Astrore 使用 HTTPS JSON 注册表发现扩展，安装包为根目录包含 <code>manifest.json</code> 的 <code>tar.gz</code> 文件。</p>
+
+    <section>
+      <h2>运行模式</h2>
+      <p><strong>WASI</strong> 是第三方扩展的推荐模式，将由 Astrore 沙箱限制文件、网络和系统访问。</p>
+      <p><strong>external-mcp</strong> 用于 Python、Node.js、Rust 可执行文件等兼容扩展。它拥有当前用户的系统权限，因此始终标记为高风险，且不会静默启动。</p>
+    </section>
+
+    <section id="permissions">
+      <h2>权限规范</h2>
+      <p>只声明真正需要的最小权限。推荐命名：</p>
+      <ul>
+        <li><code>server.status.read</code></li>
+        <li><code>server.players.read</code></li>
+        <li><code>server.command.send</code></li>
+        <li><code>storage.extension-private</code></li>
+        <li><code>network:api.example.com</code></li>
+      </ul>
+      <p>外部 MCP 进程无法完全沙箱化，即使没有声明权限，也会被视为高风险扩展。</p>
+    </section>
+
+    <section>
+      <h2>发布和更新</h2>
+      <ol>
+        <li>确保安装包根目录包含 <code>manifest.json</code>。</li>
+        <li>将不可变的 <code>tar.gz</code> 上传至 GitHub Release 或其他 HTTPS 主机。</li>
+        <li>计算安装包的 SHA-256 和文件字节数。</li>
+        <li>提高语义版本号，并更新兼容注册表中的扩展条目。</li>
+        <li>向官方商店提交修改 <code>registry/index.json</code> 的 Pull Request。</li>
+      </ol>
+      <p>Astrore 更新时会重新执行 HTTPS、大小、SHA-256、安全路径和清单一致性校验，并在替换前备份旧版本。</p>
+    </section>
+
+    <section>
+      <h2>仓库资源</h2>
+      <div class="hero-buttons article-actions">
+        <a class="btn-primary" href="https://github.com/zkonikishi/Astrore/tree/main/extensions" target="_blank" rel="noopener">示例扩展</a>
+        <a class="btn-secondary" href="https://github.com/zkonikishi/Astrore/tree/main/registry" target="_blank" rel="noopener">官方注册表</a>
+        <a class="btn-secondary" href="extensions.md">Markdown 原文</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

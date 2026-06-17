@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrore - Minecraft 服务端管理器</title>
+  <meta name="description" content="Astrore 是基于 Tauri 2 + Rust 的跨平台 Minecraft Java 服务端管理器，支持 Windows / macOS / Linux 桌面端和浏览器远程管理。" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/astrore-icon.png" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <img src="assets/astrore-icon.png" alt="Astrore" width="32" height="32" />
+        <span>Astrore</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">特性</a>
+        <a href="#download">下载</a>
+        <a href="#agent">Agent</a>
+        <a href="#guide">使用指南</a>
+        <a href="#ai">AI 运维</a>
+        <a href="developer/" class="btn-ghost">开发文档</a>
+        <a href="https://github.com/zkonikishi/Astrore" class="btn-ghost" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <img src="assets/astrore-icon.png" alt="Astrore" class="hero-icon" width="96" height="96" />
+      <h1>Astrore</h1>
+      <p class="hero-subtitle">跨平台 Minecraft Java 服务端管理器</p>
+      <p class="hero-desc">基于 Tauri 2 + Rust 构建，支持桌面端本地管理和浏览器远程控制。<br />内置 AI 运维助手，集成 35+ 模型厂商。</p>
+      <div class="hero-buttons">
+        <a href="#download" class="btn-primary">立即下载</a>
+        <a href="#guide" class="btn-secondary">使用指南</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="features" class="section">
+    <h2 class="section-title">核心特性</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🖥️</div>
+        <h3>跨平台桌面端</h3>
+        <p>Windows / macOS / Linux 原生支持，通过 Tauri 2 直接管理本机服务端进程。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>浏览器远程管理</h3>
+        <p>运行 astrore-agent 后通过浏览器管理远程服务器，支持 HTTP API 和 WebSocket 实时推送。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI 运维助手</h3>
+        <p>内置 AI 对话，支持 35+ 模型厂商（OpenAI、Claude、Gemini、DeepSeek、通义千问、豆包等），可结合服务器日志分析问题。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>实时性能监控</h3>
+        <p>CPU、内存、TPS、MSPT、在线玩家、磁盘空间等指标实时展示，支持历史曲线。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3>一键下载服务端</h3>
+        <p>内置 Paper、Purpur、Fabric、Forge、Vanilla 等核心下载，支持 Java 运行时自动下载。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>权限与玩家管理</h3>
+        <p>直接编辑 ops.json / whitelist.json / banned-players.json，支持可视化权限组配置。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="section section-alt">
+    <h2 class="section-title">下载</h2>
+    <div class="download-grid">
+      <div class="download-card">
+        <div class="download-os">🪟 Windows</div>
+        <p>Windows 10+ x64</p>
+        <a href="https://github.com/zkonikishi/Astrore/releases/latest" class="btn-primary" target="_blank" rel="noopener">下载 .exe</a>
+        <small>便携版，无需安装</small>
+      </div>
+      <div class="download-card">
+        <div class="download-os">🍎 macOS</div>
+        <p>macOS 12+ (Apple Silicon / Intel)</p>
+        <a href="https://github.com/zkonikishi/Astrore/releases/latest" class="btn-primary" target="_blank" rel="noopener">下载 .dmg</a>
+        <small>通用二进制</small>
+      </div>
+      <div class="download-card">
+        <div class="download-os">🐧 Linux</div>
+        <p>AppImage / deb</p>
+        <a href="https://github.com/zkonikishi/Astrore/releases/latest" class="btn-primary" target="_blank" rel="noopener">下载 AppImage</a>
+        <small>或从 GitHub Releases 获取</small>
+      </div>
+    </div>
+    <p class="download-note">最新版本将在 GitHub Releases 发布。Windows 用户也可下载 Agent 一体包，解压即用。</p>
+  </section>
+
+  <section id="agent" class="section">
+    <h2 class="section-title">Agent 网页端</h2>
+    <p class="section-desc">无需桌面环境，通过浏览器管理 Minecraft 服务端。</p>
+    <div class="agent-steps">
+      <div class="agent-step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>下载 Agent 一体包</h4>
+          <p>从 GitHub Releases 下载 <code>Astrore-Agent-windows.zip</code> 或对应平台包。</p>
+        </div>
+      </div>
+      <div class="agent-step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>解压并启动</h4>
+          <p>Windows 双击 <code>start-agent.bat</code>，Linux/macOS 运行 <code>./start-agent.sh</code>。</p>
+        </div>
+      </div>
+      <div class="agent-step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>浏览器访问</h4>
+          <p>打开 <code>http://127.0.0.1:1421</code> 进入网页控制台。</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre><code># 手动启动 Agent（自定义端口和令牌）
+ASTRORE_BIND=0.0.0.0:1421 \
+ASTRORE_TOKEN='your-secret-token' \
+./astrore-agent</code></pre>
+    </div>
+    <p class="section-desc">Agent 同时提供 HTTP API、WebSocket 实时推送和 Minecraft 服务端管理能力。公网部署建议通过 Caddy / Nginx 反向代理启用 HTTPS。</p>
+  </section>
+
+  <section id="guide" class="section section-alt">
+    <h2 class="section-title">使用指南</h2>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <h3>🚀 快速开始</h3>
+        <ol>
+          <li>下载并启动 Astrore</li>
+          <li>在「启动设置」中选择工作目录和服务端核心</li>
+          <li>配置内存和 JVM 参数</li>
+          <li>点击「启动服务端」</li>
+          <li>在控制台查看实时日志</li>
+        </ol>
+      </div>
+      <div class="guide-card">
+        <h3>⚙️ 配置服务端</h3>
+        <ol>
+          <li>进入「配置文件」编辑 server.properties</li>
+          <li>调整游戏模式、难度、端口等</li>
+          <li>在「插件管理」中安装插件/模组</li>
+          <li>在「权限管理」中设置 OP 和白名单</li>
+        </ol>
+      </div>
+      <div class="guide-card">
+        <h3>🤖 AI 运维助手</h3>
+        <ol>
+          <li>进入「AI 助手」页面</li>
+          <li>点击设置，选择模型厂商（支持 35+ 厂商）</li>
+          <li>填入 API Key</li>
+          <li>AI 会结合当前服务器状态和日志分析问题</li>
+        </ol>
+      </div>
+      <div class="guide-card">
+        <h3>🔄 崩溃自动重启</h3>
+        <ol>
+          <li>进入「实例设置」→「崩溃重启」</li>
+          <li>启用自动重启</li>
+          <li>设置最大重启次数和延迟</li>
+          <li>服务端异常退出时自动恢复</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai" class="section">
+    <h2 class="section-title">AI 模型支持</h2>
+    <p class="section-desc">Astrore 内置 AI 运维助手，支持以下模型厂商，覆盖国内外主流平台。</p>
+    <div class="ai-providers">
+      <div class="ai-category">
+        <h4>🌍 海外厂商</h4>
+        <div class="ai-tags">
+          <span>OpenAI</span><span>Anthropic Claude</span><span>Google Gemini</span><span>Groq</span>
+          <span>Mistral AI</span><span>xAI Grok</span><span>Perplexity</span><span>Cohere</span>
+        </div>
+      </div>
+      <div class="ai-category">
+        <h4>🇨🇳 国内厂商</h4>
+        <div class="ai-tags">
+          <span>DeepSeek</span><span>通义千问</span><span>智谱 GLM</span><span>Kimi</span>
+          <span>百川智能</span><span>零一万物</span><span>MiniMax</span><span>豆包</span><span>腾讯混元</span>
+        </div>
+      </div>
+      <div class="ai-category">
+        <h4>🔗 聚合平台</h4>
+        <div class="ai-tags">
+          <span>OpenRouter</span><span>Together AI</span><span>Fireworks AI</span><span>NVIDIA NIM</span>
+          <span>Cerebras</span><span>SambaNova</span><span>Hugging Face</span><span>SiliconFlow</span>
+        </div>
+      </div>
+      <div class="ai-category">
+        <h4>💻 本地模型</h4>
+        <div class="ai-tags">
+          <span>Ollama</span><span>LM Studio</span><span>QwenPaw Local</span>
+        </div>
+      </div>
+      <div class="ai-category">
+        <h4>📋 Coding / Agent Plan</h4>
+        <div class="ai-tags">
+          <span>通义千问 Coding</span><span>通义千问 Agent</span><span>豆包 Coding</span><span>豆包 Agent</span><span>腾讯混元 Coding</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <h2 class="section-title">技术栈</h2>
+    <div class="tech-stack">
+      <div class="tech-item">
+        <h4>🖥️ 前端</h4>
+        <p>React 18 + TypeScript + Vite</p>
+      </div>
+      <div class="tech-item">
+        <h4>🦀 后端</h4>
+        <p>Tauri 2 + Rust + Tokio</p>
+      </div>
+      <div class="tech-item">
+        <h4>🎨 UI</h4>
+        <p>Lucide Icons + 自定义 CSS</p>
+      </div>
+      <div class="tech-item">
+        <h4>🤖 AI</h4>
+        <p>OpenAI 兼容 API + 35+ 厂商</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/astrore-icon.png" alt="Astrore" width="28" height="28" />
+        <span>Astrore</span>
+      </div>
+      <p>跨平台 Minecraft Java 服务端管理器 · 基于 Tauri 2 + Rust</p>
+      <div class="footer-links">
+        <a href="developer/">开发文档</a>
+        <a href="https://github.com/zkonikishi/Astrore" target="_blank" rel="noopener">GitHub</a>
+        <a href="#features">特性</a>
+        <a href="#download">下载</a>
+        <a href="#guide">使用指南</a>
+      </div>
+      <small>&copy; 2025 Astrore. Open source under MIT License.</small>
+    </div>
+  </footer>
+</body>
+</html>
