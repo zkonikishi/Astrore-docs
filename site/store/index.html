@@ -195,6 +195,20 @@
       return risk === "low" ? "低风险" : risk === "medium" ? "需确认权限" : "高风险";
     }
 
+    function githubAuthor(repoUrl, fallback) {
+      try {
+        const url = new URL(repoUrl);
+        const parts = url.pathname.split("/").filter(Boolean);
+        if (url.hostname === "github.com" && parts.length >= 2) {
+          return {
+            name: parts[0],
+            href: `https://github.com/${parts[0]}`
+          };
+        }
+      } catch (error) {}
+      return { name: fallback, href: "" };
+    }
+
     function render() {
       const query = searchInput.value.trim().toLowerCase();
       const category = categorySelect.value;
@@ -211,7 +225,12 @@
         return (b.downloads / 1000 + b.updated.localeCompare(a.updated)) - (a.downloads / 1000);
       });
 
-      grid.innerHTML = items.map(item => `
+      grid.innerHTML = items.map(item => {
+        const author = githubAuthor(item.repo, item.author);
+        const authorHtml = author.href
+          ? `<a href="${author.href}" target="_blank" rel="noopener">${author.name}</a>`
+          : `<span>${author.name}</span>`;
+        return `
         <article class="plugin-card">
           <div class="plugin-card-head">
             <div class="plugin-icon">${item.name.slice(0, 1)}</div>
@@ -230,13 +249,14 @@
             <span>${item.downloads.toLocaleString()} 下载</span>
             <span>${item.updated}</span>
           </div>
-          <div class="plugin-author">作者：${item.author}</div>
+          <div class="plugin-author">GitHub 作者：${authorHtml}</div>
           <div class="plugin-actions">
             <a class="btn-primary" href="astrore://extensions/install?name=${encodeURIComponent(item.name)}">在 Astrore 中安装</a>
             <a class="btn-secondary" href="${item.repo}" target="_blank" rel="noopener">源码/注册表</a>
           </div>
         </article>
-      `).join("");
+      `;
+      }).join("");
 
       count.textContent = `${items.length} 个结果`;
       empty.hidden = items.length > 0;
