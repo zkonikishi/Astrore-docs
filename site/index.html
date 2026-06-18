@@ -20,6 +20,7 @@
         <a href="#download">下载</a>
         <a href="store/">扩展商店</a>
         <a href="#agent">Agent</a>
+        <a href="#navigation">功能导航</a>
         <a href="#guide">使用指南</a>
         <a href="#ai">AI 运维</a>
         <a href="developer/" class="btn-ghost">开发文档</a>
@@ -71,13 +72,28 @@
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔐</div>
-        <h3>权限与玩家管理</h3>
-        <p>直接编辑 ops.json / whitelist.json / banned-players.json，支持可视化权限组配置。</p>
+        <h3>玩家权限</h3>
+        <p>作为左侧一级功能管理 OP、白名单和封禁列表，避免和文件管理混在一起。</p>
       </div>
     </div>
   </section>
 
-  <section id="extensions" class="section section-alt">
+  <section id="navigation" class="section section-alt">
+    <h2 class="section-title">应用导航结构</h2>
+    <p class="section-desc">Astrore 的左侧菜单按日常开服工作流组织，子页面只放在顶部标签中，避免层级混乱。</p>
+    <div class="nav-map">
+      <div><strong>运行概况</strong><span>查看服务状态、资源占用、在线玩家和磁盘空间。</span></div>
+      <div><strong>控制面板</strong><span>实时控制台、命令发送、在线玩家列表和 AI 助手侧栏。</span></div>
+      <div><strong>实例配置</strong><span>启动参数、server.properties、服务器规则和 Paper / Purpur 优化。</span></div>
+      <div><strong>文件管理</strong><span>插件管理、模组管理和文件备份管理。</span></div>
+      <div><strong>玩家权限</strong><span>独立管理 OP、白名单和封禁玩家，不再作为文件管理子项。</span></div>
+      <div><strong>软件设置</strong><span>语言、主题、Agent 地址和 AI 厂商配置。</span></div>
+      <div><strong>下载中心</strong><span>Java 下载、核心下载、插件下载和模组下载。</span></div>
+      <div><strong>扩展商店</strong><span>安装、更新、启停 Astrore 三方扩展。</span></div>
+    </div>
+  </section>
+
+  <section id="extensions" class="section">
     <h2 class="section-title">应用内扩展商店</h2>
     <p class="section-desc">官网提供说明和开发入口，真正的扩展发现、安装、更新和启停都在 Astrore Tauri 应用内完成。</p>
     <div class="store-grid">
@@ -102,7 +118,7 @@
     </div>
   </section>
 
-  <section id="download" class="section">
+  <section id="download" class="section section-alt">
     <h2 class="section-title">下载</h2>
     <div class="download-grid">
       <div class="download-card">
@@ -124,7 +140,7 @@
         <small>或从 GitHub Releases 获取</small>
       </div>
     </div>
-    <p class="download-note">最新版本将在 GitHub Releases 发布。Windows 用户也可下载 Agent 一体包，解压即用。</p>
+    <p class="download-note">最新版本将在 GitHub Releases 发布。桌面应用和 Agent 使用同一个版本号，Agent 健康检查会返回当前构建版本。</p>
   </section>
 
   <section id="agent" class="section">
@@ -135,7 +151,7 @@
         <div class="step-num">1</div>
         <div>
           <h4>下载 Agent 一体包</h4>
-          <p>从 GitHub Releases 下载 <code>Astrore-Agent-windows.zip</code> 或对应平台包。</p>
+          <p>从 GitHub Releases 下载对应平台的 Agent 包。Agent 与桌面应用共享 Astrore 版本号，便于确认是否同步更新。</p>
         </div>
       </div>
       <div class="agent-step">
@@ -159,7 +175,7 @@ ASTRORE_BIND=0.0.0.0:1421 \
 ASTRORE_TOKEN='your-secret-token' \
 ./astrore-agent</code></pre>
     </div>
-    <p class="section-desc">Agent 同时提供 HTTP API、WebSocket 实时推送和 Minecraft 服务端管理能力。公网部署建议通过 Caddy / Nginx 反向代理启用 HTTPS。</p>
+    <p class="section-desc">Agent 同时提供 HTTP API、WebSocket 实时推送和 Minecraft 服务端管理能力。访问 <code>/health</code> 可查看 Agent 版本；公网部署建议通过 Caddy / Nginx 反向代理启用 HTTPS。</p>
   </section>
 
   <section id="guide" class="section section-alt">
@@ -169,26 +185,26 @@ ASTRORE_TOKEN='your-secret-token' \
         <h3>🚀 快速开始</h3>
         <ol>
           <li>下载并启动 Astrore</li>
-          <li>在「启动设置」中选择工作目录和服务端核心</li>
+          <li>在「实例配置」中选择实例目录、Java 和服务端核心</li>
           <li>配置内存和 JVM 参数</li>
           <li>点击「启动服务端」</li>
-          <li>在控制台查看实时日志</li>
+          <li>在「控制面板」查看实时日志并发送命令</li>
         </ol>
       </div>
       <div class="guide-card">
         <h3>⚙️ 配置服务端</h3>
         <ol>
-          <li>进入「配置文件」编辑 server.properties</li>
+          <li>进入「实例配置」顶部标签编辑 server.properties</li>
           <li>调整游戏模式、难度、端口等</li>
           <li>在应用内「扩展商店」中安装插件、模组和运维工具</li>
-          <li>在「权限管理」中设置 OP 和白名单</li>
+          <li>在左侧「玩家权限」中设置 OP、白名单和封禁列表</li>
         </ol>
       </div>
       <div class="guide-card">
         <h3>🤖 AI 运维助手</h3>
         <ol>
-          <li>进入「AI 助手」页面</li>
-          <li>点击设置，选择模型厂商（支持 35+ 厂商）</li>
+          <li>在「控制面板」右侧使用 AI 助手</li>
+          <li>进入「软件设置」→「AI 助手设置」选择模型厂商</li>
           <li>填入 API Key</li>
           <li>AI 会结合当前服务器状态和日志分析问题</li>
         </ol>
@@ -196,7 +212,7 @@ ASTRORE_TOKEN='your-secret-token' \
       <div class="guide-card">
         <h3>🔄 崩溃自动重启</h3>
         <ol>
-          <li>进入「实例设置」→「崩溃重启」</li>
+          <li>进入「实例配置」→「Paper / Purpur 优化设置」或「软件设置」中的运行策略</li>
           <li>启用自动重启</li>
           <li>设置最大重启次数和延迟</li>
           <li>服务端异常退出时自动恢复</li>
