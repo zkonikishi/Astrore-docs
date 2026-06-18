@@ -45,6 +45,7 @@
 
     <section>
       <h2>发布和更新</h2>
+      <p>三方作者只需要提供公开 Git 仓库链接用于审核。仓库应包含 <code>manifest.json</code>、源码文件和简短 README；官方维护者或自动化流程负责打包、计算 SHA-256 和文件大小，并写入可安装注册表。</p>
       <ol>
         <li>确保安装包根目录包含 <code>manifest.json</code>。</li>
         <li>将不可变的 <code>tar.gz</code> 上传至 GitHub Release 或其他 HTTPS 主机。</li>
@@ -52,14 +53,14 @@
         <li>提高语义版本号，并更新兼容注册表中的扩展条目。</li>
         <li>向官方商店提交修改 <code>registry/index.json</code> 的 Pull Request。</li>
       </ol>
-      <p>Astrore 更新时会重新执行 HTTPS、大小、SHA-256、安全路径和清单一致性校验，并在替换前备份旧版本。</p>
+      <p>Astrore 打开扩展商店时会自动读取已配置的注册表，比对已安装 manifest 版本并标记可更新扩展。更新时会重新执行 HTTPS、大小、SHA-256、安全路径和清单一致性校验，并在替换前备份旧版本。</p>
     </section>
 
     <section>
       <h2>仓库资源</h2>
       <div class="hero-buttons article-actions">
         <a class="btn-primary" href="https://github.com/zkonikishi/Astrore/tree/main/extensions" target="_blank" rel="noopener">示例扩展</a>
-        <a class="btn-secondary" href="https://github.com/zkonikishi/Astrore/tree/main/registry" target="_blank" rel="noopener">官方注册表</a>
+        <a class="btn-secondary" href="../registry/index.json" target="_blank" rel="noopener">官方注册表</a>
         <a class="btn-secondary" href="extensions.md">Markdown 原文</a>
       </div>
     </section>
