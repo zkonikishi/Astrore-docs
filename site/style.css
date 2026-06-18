@@ -60,6 +60,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft Ya
 .feature-card h3 { font-size: 17px; margin-bottom: 8px; }
 .feature-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
 
+/* Navigation Map */
+.nav-map { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.nav-map div { min-height: 118px; display: grid; align-content: start; gap: 8px; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.nav-map strong { color: var(--primary); font-size: 15px; }
+.nav-map span { color: var(--text-secondary); font-size: 13px; line-height: 1.65; }
+
 /* Download */
 .download-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .download-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -189,7 +195,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft Ya
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hero h1 { font-size: 36px; }
-  .features-grid, .download-grid { grid-template-columns: 1fr; }
+  .features-grid, .download-grid, .nav-map { grid-template-columns: 1fr; }
   .store-grid { grid-template-columns: 1fr; }
   .market-hero, .market-layout, .market-toolbar, .plugin-grid { grid-template-columns: 1fr; }
   .market-stats { min-width: 0; grid-template-columns: 1fr; }
