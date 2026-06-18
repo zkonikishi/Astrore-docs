@@ -53,8 +53,15 @@ enforced by the sandbox runtime.
 
 ## Publish and update
 
+Third-party authors only need to provide a public Git repository link for review. The repository
+should contain `manifest.json`, source files, and a short README. Official maintainers or release
+automation package the extension, calculate SHA-256 and byte size, then publish the installable
+registry entry.
+
+Maintainer release flow:
+
 1. Package the extension so `manifest.json` is at the archive root.
-2. Publish the immutable `tar.gz` file in a GitHub Release or another HTTPS host.
+2. Publish the immutable `tar.gz` file in GitHub Pages, GitHub Releases, or another HTTPS host.
 3. Calculate its SHA-256 and byte size.
 4. Add or update its entry in an Astrore-compatible registry.
 5. Increase the semantic version for every release.
@@ -76,6 +83,7 @@ Registry format:
       "sha256": "64-character-sha256",
       "size": 12345,
       "homepage": "https://github.com/developer/extension",
+      "sourceUrl": "https://github.com/developer/extension",
       "permissions": ["server.status.read"],
       "verified": false
     }
@@ -83,13 +91,15 @@ Registry format:
 }
 ```
 
-Astrore compares the registry version with the installed manifest. Updates use the same install
-pipeline: HTTPS download, 25 MB size limit, SHA-256 verification, safe archive path validation,
-manifest validation, old-version backup, then atomic replacement.
+Astrore automatically fetches the configured registry when users open the extension store. It
+compares the registry version with the installed manifest and marks newer entries as available
+updates. Updates use the same install pipeline: HTTPS download, 25 MB size limit, SHA-256
+verification, safe archive path validation, manifest validation, old-version backup, then atomic
+replacement.
 
 Third-party communities can host their own registry. Users paste its HTTPS URL into the online
 extension store. The official registry is maintained through reviewed pull requests.
 
-For the official registry, contributors submit a pull request changing `registry/index.json`.
-`npm run registry:check` validates IDs, semantic versions, HTTPS URLs, SHA-256 values, permissions,
+For the official registry, contributors submit a pull request changing `site/registry/index.json`.
+`npm run registry:check` in the Astrore app repository validates IDs, semantic versions, HTTPS URLs, SHA-256 values, permissions,
 duplicate entries, and the 25 MB package limit. Only maintainers may mark an entry as `verified`.
